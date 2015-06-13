@@ -60,5 +60,6 @@ class AppController extends Controller {
     // デフォルトは拒否。Admin ユーザー以外は全員アクセスできない。
     return false;
     }*/
-    
+
 }
+
