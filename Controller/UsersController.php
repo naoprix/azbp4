@@ -5,6 +5,10 @@
 
 class UsersController extends AppController {
 
+    // public $helpers = array('Html', 'Form', 'Session');
+    // public $components = array('Auth', 'Paginator', 'Session');
+    // public $uses = array('User');
+
     public function beforeFilter() {
         parent::beforeFilter();
         // ユーザ自信による登録とログアウトを許可
@@ -54,18 +58,15 @@ class UsersController extends AppController {
         }
     }
 
-    public function delete($id = null) {
-        $this->request->onlyAllow('post');
+    public function delete($id) {
 
-        $this->User->id = $id;
-        if (!$this->User->exists()) {
-            throw new NotFoundException(__('Invalid user'));
+        if ($this->request->is('post')){
+            if ($this->User->delete($id)) {
+                $this->Session->setFlash(__('ユーザーを削除しました'));
+                $this->redirect(array('action' => 'index'));
+            }            
         }
-        if ($this->User->delete()) {
-            $this->Session->setFlash(__('User deleted'));
-            $this->redirect(array('action' => 'index'));
-        }
-        $this->Session->setFlash(__('User was not deleted'));
+        $this->Session->setFlash(__('ユーザーを削除できませんでした'));
         $this->redirect(array('action' => 'index'));
     }
 
@@ -73,7 +74,6 @@ class UsersController extends AppController {
 	    if ($this->request->is('post')) {
     	    if ($this->Auth->login()) {
                 $this->redirect(array('controller'=>'Tops', 'action' =>'index'));
-    	        //$this->redirect($this->Auth->redirectUrl());
     	    } else {
     	        $this->Session->setFlash(__('Invalid username or password, try again'));
     	    }

@@ -25,17 +25,16 @@ class Mtrlapprovdoc extends AppModel {
             			// 				'checkContentType', array(
             			// 					'image/jpeg', 'image/gif', 'image/png', 'application/pdf', 'application/msword')),
             			// 		'message' => 'Error. Invalid File Type'),
-		            	'fileSize' => array(
-		           				'rule' => array('checkFileSize', '20MB'),
-		           				'message' => 'Error. Maximum file size is 20MB'),
+		            	// 'fileSize' => array(
+		           		// 		'rule' => array('checkFileSize', '20MB'),
+		           		// 		'message' => 'Error. Maximum file size is 20MB'),
 		            	'fileExt' => array(
 		           				'fule' => array('checkExtension', array('jpg', 'gif', 'png', 'pdf')),
 		           				'message' => 'Invalid file type'),
-		            	'illegalCode' => array(
-		            			'rule' => 'funcCheckFile', 'checkIllegalCode'), 
-		            			'allowEmpty' => true)
-         			)
-			    );
+		            	// 'illegalCode' => array(
+		            	// 		'rule' => 'funcCheckFile', 'checkIllegalCode'), 
+		            	// 		'allowEmpty' => true)
+         			));
 
     ////
     //FileBinderのGitHubのサンプルコードより。不正なファイルをチェックしているようだ。
